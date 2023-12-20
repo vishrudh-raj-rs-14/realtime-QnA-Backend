@@ -21,7 +21,7 @@ const login = expressAsyncHandler(async (req, res) => {
 
   res
     .status(200)
-    .cookie("ospbl", token, {
+    .cookie("qna", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV !== "development",
     })
@@ -62,7 +62,7 @@ const register = expressAsyncHandler(async (req, res) => {
   });
   res
     .status(201)
-    .cookie("ospbl", token, {
+    .cookie("qna", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV != "DEV",
     })
@@ -75,7 +75,7 @@ const register = expressAsyncHandler(async (req, res) => {
 const logout = expressAsyncHandler(async (req, res) => {
   res
     .status(200)
-    .cookie("ospbl", "", {
+    .cookie("qna", "", {
       httpOnly: true,
       secure: process.env.NODE_ENV != "DEV",
       expires: new Date(0),
@@ -93,8 +93,8 @@ const protect = expressAsyncHandler(async (req: any, res, next) => {
   ) {
     token = req.headers.authorization.split(" ")[1];
   }
-  if (req.cookies.ospbl) {
-    token = req.cookies.ospbl;
+  if (req.cookies.qna) {
+    token = req.cookies.qna;
   }
   if (!token) {
     res.status(401).json({

@@ -23,19 +23,18 @@ const userSchema = new mongoose.Schema({
     minLength: [8, "Your password must be longer than 6 characters"],
     select: false,
   },
+  lastQuestionAt: {
+    type: Date,
+    default: null,
+  },
   role: {
     type: String,
-    enum: ["USER", "ADMIN", "SECURITY", "GRADE-CHECKER"],
+    enum: ["USER", "ADMIN"],
     default: "USER",
   },
   createdAt: {
     type: Date,
     default: Date.now,
-  },
-  mobileNo: {
-    type: String,
-    maxLength: [10, "Your mobile number cannot exceed 10 characters"],
-    match: [/^[0-9]{10}$/, "Please enter a valid mobile number"],
   },
 });
 
