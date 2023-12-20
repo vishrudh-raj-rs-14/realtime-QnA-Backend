@@ -24,6 +24,7 @@ const login = expressAsyncHandler(async (req, res) => {
     .cookie("qna", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV !== "development",
+      sameSite: "none",
     })
     .json({
       status: "success",
